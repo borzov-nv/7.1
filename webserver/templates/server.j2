@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ ansible_hostname }} Server Specs</title>
+</head>
+<body>
+    <h1>Server Specifications for {{ ansible_hostname }}</h1>
+    <p><strong>CPU:</strong> {{ ansible_processor_vcpus }} Cores</p>
+    <p><strong>RAM:</strong> {{ (ansible_memtotal_mb / 1024) | round(2) }} GB</p>
+    <p><strong>Disk:</strong> {{ (ansible_mounts | selectattr('mount', '==', '/') | first).size_total / 1024 / 1024 / 1024 | float | round(2) }} GB</p>
+    <p><strong>IP Address:</strong> {{ ansible_default_ipv4.address }}</p>
+</body>
+</html>
