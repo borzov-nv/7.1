@@ -1,0 +1,20 @@
+---
+
+- name: new MOTD
+  hosts: myhosts
+  remote_user: borzov
+  become: yes
+  vars:
+    custom_motd: Greetings from the darkness
+
+  tasks:
+    - name: disable ubuntu MOTD scripts
+      ansible.builtin.file:
+        path: /etc/update-motd.d/
+        state: absent
+
+    - name: custom MOTD
+      ansible.builtin.copy:
+        content: "{{ custom_motd }}"
+        dest: /etc/motd
+        mode: '0644'

@@ -1,0 +1,12 @@
+---
+- name: new new MOTD
+  hosts: myhosts
+  remote_user: borzov
+  become: yes
+
+  tasks:
+    - name: new custom MOTD
+      ansible.builtin.template:
+        src: motd2.j2
+        dest: /etc/motd
+        mode: '0644'

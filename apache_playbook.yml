@@ -1,0 +1,8 @@
+---
+- name: Apache
+  hosts: myhosts
+  remote_user: borzov
+  become: yes
+  roles:
+    - geerlingguy.apache
+    - webserver
